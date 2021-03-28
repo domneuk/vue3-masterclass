@@ -40,6 +40,8 @@ By completing the Vue.js Masterclass, you will be able to land any Vue related j
 **Intrigued?**
 [Check source github](https://github.com/vueschool/vue-masterclass)
 
+[Forum mockup](https://github.com/vueschool/forum-mockup)
+
 ---
 
 ## Project setup
