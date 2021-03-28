@@ -15,15 +15,24 @@ const routes = [
     name: 'ThreadShow',
     component: PageThreadShow,
     props: true,
-    beforeRouteEnter(to, from, next) {
+    beforeEnter(to, from, next) {
+      console.info('Entering "beforeRouteEnter" of "ThreadShow"');
       // check if thread exists
       const threadExists = sourceData.threads.find((thread) => thread.id === to.params.id);
       if (threadExists) {
+        console.info(`Thread (${to.params.id}) does exist, fowarding to PageThreadShow`);
         // if exists continues
         return next();
       }
+      console.warn(`Thread (${to.params.id}) not found, redirecting to NotFound`);
       // if doesnt exist redirect to not found
-      return next({ name: 'NotFound' });
+      return next({
+        name: 'NotFound',
+        params: { pathMatch: to.path.substring(1).split('/') },
+        // preserve existing query and hash
+        query: to.query,
+        hash: to.hash,
+      });
     },
   },
   {
